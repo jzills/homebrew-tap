@@ -1,7 +1,6 @@
 class Kx < Formula
   desc "kubectl wrapper that selects resources by index instead of by name"
   homepage "https://github.com/jzills/kx"
-  version "0.10.0"
   license "MIT"
 
   on_macos do

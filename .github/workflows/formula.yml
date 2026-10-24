@@ -17,9 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # Homebrew is preinstalled on both runners. Linking the checkout in as
-      # the tap is what makes the audit read these files rather than whatever
-      # main already holds, so a pull request is checked before it merges.
+      # macOS runners carry Homebrew; Ubuntu runners no longer do, so both
+      # jobs install it the same way rather than one trusting the image.
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@2026.10.19.1
+
+      # Linking the checkout in as the tap is what makes the audit read these
+      # files rather than whatever main already holds, so a pull request is
+      # checked before it merges.
       - name: Tap this checkout
         run: |
           taps="$(brew --repository)/Library/Taps/jzills"
