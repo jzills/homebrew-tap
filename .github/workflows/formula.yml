@@ -1,0 +1,44 @@
+name: Formula
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Audit, install and test
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # Homebrew is preinstalled on both runners. Linking the checkout in as
+      # the tap is what makes the audit read these files rather than whatever
+      # main already holds, so a pull request is checked before it merges.
+      - name: Tap this checkout
+        run: |
+          taps="$(brew --repository)/Library/Taps/jzills"
+          mkdir -p "$taps"
+          ln -s "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
+          brew tap
+
+      - name: Audit
+        run: brew audit --strict --online jzills/tap/kx
+
+      - name: Install
+        run: brew install --formula --verbose jzills/tap/kx
+
+      - name: Test
+        run: brew test --verbose jzills/tap/kx
+
+      # The archive is per-OS and per-architecture, so the job that installed
+      # it says which one it proved.
+      - name: Report what ran
+        run: |
+          kx --version
+          echo "installed on ${{ matrix.os }} ($(uname -m))"
