@@ -32,18 +32,31 @@ jobs:
           ln -s "$GITHUB_WORKSPACE" "$taps/homebrew-tap"
           brew tap
 
+      # Every formula in Formula/, so a tool listed in the README before its
+      # first release isn't audited until its release commits the formula.
       - name: Audit
-        run: brew audit --strict --online jzills/tap/kx
+        run: |
+          for f in Formula/*.rb; do
+            brew audit --strict --online "jzills/tap/$(basename "$f" .rb)"
+          done
 
       - name: Install
-        run: brew install --formula --verbose jzills/tap/kx
+        run: |
+          for f in Formula/*.rb; do
+            brew install --formula --verbose "jzills/tap/$(basename "$f" .rb)"
+          done
 
       - name: Test
-        run: brew test --verbose jzills/tap/kx
+        run: |
+          for f in Formula/*.rb; do
+            brew test --verbose "jzills/tap/$(basename "$f" .rb)"
+          done
 
       # The archive is per-OS and per-architecture, so the job that installed
       # it says which one it proved.
       - name: Report what ran
         run: |
-          kx --version
+          for f in Formula/*.rb; do
+            "$(basename "$f" .rb)" --version
+          done
           echo "installed on ${{ matrix.os }} ($(uname -m))"
