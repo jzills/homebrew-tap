@@ -2,7 +2,6 @@
 class Snoop < Formula
   desc "Terminal viewer for Claude Code session transcripts"
   homepage "https://github.com/jzills/snoop"
-  version "0.1.0"
   license "MIT"
 
   on_macos do
