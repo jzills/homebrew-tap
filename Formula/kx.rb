@@ -7,23 +7,23 @@ class Kx < Formula
 
   on_macos do
     on_intel do
-      url "https://github.com/jzills/kx/releases/download/v0.13.0/kx_v0.13.0_darwin_amd64.tar.gz"
-      sha256 "88e8a63a5199de5692ab64c0fa779a88e99cb0e310f7a7d65e57bf51bc03eba8"
+      url "https://github.com/jzills/kx/releases/download/v0.14.0/kx_v0.14.0_darwin_amd64.tar.gz"
+      sha256 "e8aac8a2140f3b8328d657c18787e5926a9fa9583bf22ed14fdd1e1ea4da7023"
     end
     on_arm do
-      url "https://github.com/jzills/kx/releases/download/v0.13.0/kx_v0.13.0_darwin_arm64.tar.gz"
-      sha256 "d085a3ebb36603bc5e49e3fb42315ee428499f1599b63c8b44c0933870d44238"
+      url "https://github.com/jzills/kx/releases/download/v0.14.0/kx_v0.14.0_darwin_arm64.tar.gz"
+      sha256 "bea8b0e2c032eb0838ac861349780174e2ed021ca2d835a9d787335a2c1b157c"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/jzills/kx/releases/download/v0.13.0/kx_v0.13.0_linux_amd64.tar.gz"
-      sha256 "05d929acc8df92373e784277f744893bdc47acffef2df46d464f36dc56be2647"
+      url "https://github.com/jzills/kx/releases/download/v0.14.0/kx_v0.14.0_linux_amd64.tar.gz"
+      sha256 "1ed305bca1d9b69e1dd2540de757ecd5d7c26f392aa8d9ecb7fb50a35c1c3086"
     end
     on_arm do
-      url "https://github.com/jzills/kx/releases/download/v0.13.0/kx_v0.13.0_linux_arm64.tar.gz"
-      sha256 "d9238c28bef3b4b50921bf97dc8b73d62dec9a1b04f53fa9380c86a4a41911d4"
+      url "https://github.com/jzills/kx/releases/download/v0.14.0/kx_v0.14.0_linux_arm64.tar.gz"
+      sha256 "09d5a5a85d22ae1625f8b118bc4a7195cfb6482ef5f3173c7d8742c6a13e8b7a"
     end
   end
 
